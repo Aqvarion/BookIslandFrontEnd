@@ -4,27 +4,30 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TopBarComponent} from './components/top-bar/top-bar.component';
-import {CatalogComponent} from './components/catalog/catalog.component';
-import {UserRegistrationComponent} from './components/user-registration/user-registration.component';
-import {UserLoginComponent} from './components/user-login/user-login.component';
-import {HttpClientModule} from '@angular/common/http';
-import {BookDetailsComponent} from './components/book-details/book-details.component';
-import {FormsModule} from '@angular/forms';
+import {CatalogComponent} from './productPart/component/catalog/catalog.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {BookDetailsComponent} from './productPart/component/book-details/book-details.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatOptionModule, MatSelectModule} from '@angular/material';
-import {BookService} from './service/book.service';
-import {ShoppingCartComponent} from './components/shopping-cart/shopping-cart.component';
-import {LocalStorageService, StorageService} from './service/storage.service';
+import {BookService} from './productPart/service/book.service';
+import {ShoppingCartComponent} from './productPart/component/shopping-cart/shopping-cart.component';
+import {LocalStorageService, StorageService} from './productPart/service/storage.service';
+import {RegisterComponent} from './userPart/component/register/register.component';
+import {LoginComponent} from './userPart/component/login/login.component';
+import { AlertComponent } from './userPart/component/alert/alert.component';
+import {JwtInterceptor} from './userPart/helpers/jwt-interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopBarComponent,
     CatalogComponent,
-    UserRegistrationComponent,
-    UserLoginComponent,
     BookDetailsComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    RegisterComponent,
+    LoginComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -33,12 +36,14 @@ import {LocalStorageService, StorageService} from './service/storage.service';
     FormsModule,
     BrowserAnimationsModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [
     BookService,
     LocalStorageService,
-    { provide: StorageService, useClass: LocalStorageService}
+    { provide: StorageService, useClass: LocalStorageService},
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
