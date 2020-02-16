@@ -1,0 +1,49 @@
+
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Genre</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Cost</th>
+    <th>Add</th>
+    <th>Reduce</th>
+    <th>Remove</th>
+  </tr>
+  <tr *ngFor="let cartProduct of cartProducts">
+    <td>{{cartProduct.book.title}}</td>
+    <td>{{cartProduct.book.author}}</td>
+    <td>{{cartProduct.book.genre}}</td>
+    <td>{{cartProduct.book.price}}</td>
+    <td>{{cartProduct.quantity}}</td>
+    <td>{{cartProduct.productCost}}</td>
+    <td>
+      <button type="button"(click)="addCartProduct(cartProduct.book)">
+        +
+      </button>
+    </td>
+    <td>
+      <button type="button" (click)="reduceCartProduct(cartProduct.book)">
+        -
+      </button>
+    </td>
+    <td>
+      <button type="button"(click)="removeCartProduct(cartProduct.book)">
+        X
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5" align="right">
+      Total cost:
+    </td>
+    <td colspan="4" align="left">
+      {{totalCost}}
+    </td>
+  </tr>
+</table>
+<button type="button" [routerLink]="['/catalog']">Catalog</button>
+<button type="button" (click)="clear()">Delete all</button>
+

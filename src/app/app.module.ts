@@ -12,7 +12,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatOptionModule, MatSelectModule} from '@angular/material';
 import {BookService} from './productPart/service/book.service';
 import {ShoppingCartComponent} from './productPart/component/shopping-cart/shopping-cart.component';
-import {LocalStorageService, StorageService} from './productPart/service/storage.service';
 import {RegisterComponent} from './userPart/component/register/register.component';
 import {LoginComponent} from './userPart/component/login/login.component';
 import { AlertComponent } from './userPart/component/alert/alert.component';
@@ -41,8 +40,6 @@ import {JwtInterceptor} from './userPart/helpers/jwt-interceptor';
   ],
   providers: [
     BookService,
-    LocalStorageService,
-    { provide: StorageService, useClass: LocalStorageService},
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

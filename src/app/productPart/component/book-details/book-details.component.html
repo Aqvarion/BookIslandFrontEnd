@@ -1,0 +1,7 @@
+<div>Id: {{book.id}}</div>
+<div>Title: {{book.title}}</div>
+<div>Author: {{book.author}}</div>
+<div>Genre: {{book.genre}}</div>
+<div>Price: {{book.price}}</div>
+<button type="button" (click)="addToCart(book)">Buy</button>
+<button [routerLink]="['/catalog']">Catalog</button>

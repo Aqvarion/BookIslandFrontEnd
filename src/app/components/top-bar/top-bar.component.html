@@ -1,0 +1,14 @@
+<h1 [routerLink]="['/catalog']">Book Island</h1>
+
+<mat-form-field>
+  <mat-label>Genres</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let genre of genres"><a >{{genre}}</a></mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<h4 [routerLink]="['/shop-cart']">ShoppingCart</h4>
+<button [routerLink]="['/register']">Register</button>
+<button [routerLink]="['/login']">Login</button>
+

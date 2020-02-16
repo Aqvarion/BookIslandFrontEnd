@@ -1,0 +1,29 @@
+<h2>Register</h2>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <label for="username">Username</label>
+  <input type="text" id="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+  <div *ngIf="submitted && f.username.errors">
+    <div *ngIf="f.username.errors.required">Username is required</div>
+  </div>
+
+  <label for="email">Email</label>
+  <input type="text" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+  <div *ngIf="submitted && f.email.errors">
+    <div *ngIf="f.email.errors.required">Username is required</div>
+  </div>
+
+  <label for="password">Password</label>
+  <input type="password" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+  <div *ngIf="submitted && f.password.errors">
+    <div *ngIf="f.password.errors.required">Password is required</div>
+    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+  </div>
+
+
+  <button [disabled]="loading">
+    <span *ngIf="loading"></span>
+    Register
+  </button>
+  <button [routerLink]="['/login']">Cancel</button>
+</form>

@@ -1,0 +1,6 @@
+<div *ngFor="let book of books | async">
+  <div>{{book.title}}</div>
+  <div>{{book.genre}}</div>
+  <button [routerLink]="['/book-details',book.id]">Open</button>
+</div>
+<router-outlet></router-outlet>
