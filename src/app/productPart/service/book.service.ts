@@ -43,8 +43,6 @@ export class BookService {
         if (ai.book.id === data.id ) {
           mark = 'found';
           ai.quantity += 1;
-          console.log(typeof Number(ai.productCost));
-          console.log(typeof data.price);
           ai.productCost = Number(ai.productCost) + Number(data.price);
           break;
         }
@@ -86,7 +84,6 @@ export class BookService {
         a[i].quantity -= 1;
 
         if (a[i].quantity < 1) {
-          console.log('remove');
           this.removeCartProduct(a[i].book);
         } else {
           localStorage.setItem('basket', JSON.stringify(a));
