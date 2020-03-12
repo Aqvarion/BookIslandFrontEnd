@@ -10,11 +10,14 @@ import {BookService} from '../../service/book.service';
 })
 export class CatalogComponent implements OnInit {
 
+  genres: Observable<any[]>;
   books: Observable<Book[]>;
+  selectGenre = null;
   constructor(private bookService: BookService) { }
 
   ngOnInit() {
     this.books = this.bookService.getBooks();
+    this.genres = this.bookService.getGenres();
   }
 
 }

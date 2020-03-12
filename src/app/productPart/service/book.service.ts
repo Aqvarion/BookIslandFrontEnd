@@ -1,34 +1,28 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Book} from '../../model/book';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {CartProduct} from '../../model/cart-product';
-import {toNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_version';
 
-
-
-
+const BOOK_API = 'http://localhost:8080/api/book';
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
   private readonly booksUrl: string;
   constructor(private http: HttpClient) {
-    this.booksUrl = 'http://localhost:8080';
   }
 
-  private books: Observable<Book[]>;
-
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.booksUrl + '/books');
+    return this.http.get<Book[]>(BOOK_API + '/books');
   }
 
   get(id: number): Observable<Book> {
-    return this.http.get<Book>(this.booksUrl + '/get' + '/' + id);
+    return this.http.get<Book>(BOOK_API + '/get' + '/' + id);
   }
 
-  getGenres() {
-    return this.http.get(this.booksUrl + '/genres');
+  getGenres(): Observable<any[]> {
+    return this.http.get<any[]>(BOOK_API + '/genres');
   }
 
 

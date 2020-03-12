@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BookService} from '../../productPart/service/book.service';
+import {TokenStorageService} from '../../userPart/service/token-storage.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,15 +8,27 @@ import {BookService} from '../../productPart/service/book.service';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
+  isLoggedIn = false;
+  private roles: string[];
+  username: string;
+  adminRights = false;
 
-  genres;
-  constructor(private bookService: BookService) { }
+  constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
-    this.bookService.getGenres()
-      .subscribe(data => {
-        this.genres = data;
-      });
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+      this.adminRights = this.roles.includes('ROLE_ADMIN');
+      this.username = user.username;
+    }
   }
 
+  logout() {
+    this.tokenStorageService.signOut();
+    window.location.reload();
+  }
 }

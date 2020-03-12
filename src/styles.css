@@ -24,19 +24,7 @@ app-top-bar {
   align-items: center;
 }
 
-app-bottom-top-bar {
-  width: 100%;
-  height: 60px;
-  background-color: #BC8F8F;
-  padding-right: 30px;
-  padding-left: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.select-bottom {
-  padding-right: 10px;
+.log-box{
 }
 
 html, body { height: 100%; }

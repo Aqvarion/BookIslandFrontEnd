@@ -1,4 +1,14 @@
+
+
+<mat-form-field>
+  <mat-label>Select genre</mat-label>
+  <mat-select matNativeControl [(value)]="selectGenre">
+    <mat-option>All books</mat-option>
+    <mat-option *ngFor="let book of books | async"  [value]="book.genre">{{book.genre}}</mat-option>
+  </mat-select>
+</mat-form-field>
 <div *ngFor="let book of books | async">
+  <div *ngIf="book.genre == selectGenre || selectGenre == null">
   <div>{{book.title}}</div>
   <div>{{book.genre}}</div>
   <button [routerLink]="['/book-details',book.id]">Open</button>

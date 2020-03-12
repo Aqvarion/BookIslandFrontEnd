@@ -1,21 +1,29 @@
 <h2>Login</h2>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
 
     <label for="username">Username</label>
-    <input type="text" id="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-    <div *ngIf="submitted && f.username.errors">
-      <div *ngIf="f.username.errors.required">Username is required</div>
+    <input type="text" id="username" name="username" [(ngModel)]="form.username" required #username="ngModel"/>
+    <div role="alert" *ngIf="f.submitted && username.invalid">
+      Username is required
     </div>
 
     <label for="password">Password</label>
-    <input type="password" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-  <div *ngIf="submitted && f.password.errors">
-    <div *ngIf="f.password.errors.required">Password is required</div>
-  </div>
+    <input type="password" id="password" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel"/>
+    <div role="alert" *ngIf="f.submitted && password.invalid">
+      <div *ngIf="password.errors.required">
+        Password is required
+      </div>
+      <div *ngIf="password.errors.minlength">
+        Password must be at least 6 characters
+      </div>
+    </div>
 
-  <button [disabled]="loading">
-    <span *ngIf="loading"></span>
-      Login
-  </button>
-  <a [routerLink]="['/register']" >Register</a>
+  <button>Login</button>
+  <div role="alert" *ngIf="f.submitted && isLoginFailed">
+    Login failed: {{errorMessage}}
+  </div>
+  <button [routerLink]="['/register']" >Register</button>
 </form>
+<div *ngIf="isLoggedIn">
+  Your are logged in!
+</div>
