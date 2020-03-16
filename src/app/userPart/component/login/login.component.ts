@@ -35,12 +35,12 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveUser(data);
 
         this.isLoginFailed = false;
-        this.isLoggedIn = true;
+        this.isLoggedIn = this.authService.isLoggedIn();
         this.roles = this.tokenStorage.getUser().roles;
         this.reloadPage();
       },
       err => {
-        this.errorMessage = err;
+        this.errorMessage = 'Wrong username or password';
         this.isLoginFailed = true;
       }
     );

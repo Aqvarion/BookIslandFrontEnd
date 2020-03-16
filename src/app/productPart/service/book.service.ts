@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Book} from '../../model/book';
+import {Book} from '../model/book';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {CartProduct} from '../../model/cart-product';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {CartProduct} from '../model/cart-product';
 
 const BOOK_API = 'http://localhost:8080/api/book';
+const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -95,5 +97,13 @@ export class BookService {
   getLocalCartProducts(): CartProduct[] {
     const products: CartProduct[] = JSON.parse(localStorage.getItem('basket')) || [];
     return products;
+  }
+
+  public buyProducts(cart): Observable<any> {
+    alert(cart);
+    return this.http.post(BOOK_API + '/buyItem', {
+      userId: JSON.parse(sessionStorage.getItem('auth-user')).id
+    }, httpOptions);
+    alert('kk');
   }
 }

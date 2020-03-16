@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TopBarComponent} from './components/top-bar/top-bar.component';
 import {CatalogComponent} from './productPart/component/catalog/catalog.component';
-import { HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BookDetailsComponent} from './productPart/component/book-details/book-details.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -15,7 +15,9 @@ import {ShoppingCartComponent} from './productPart/component/shopping-cart/shopp
 import {RegisterComponent} from './userPart/component/register/register.component';
 import {LoginComponent} from './userPart/component/login/login.component';
 import { UserListComponent } from './userPart/component/user-list/user-list.component';
-import {authInterceptorProviders} from './userPart/helpers/auth-interceptor';
+import {AuthInterceptor} from './userPart/helpers/auth-interceptor';
+import { UserOrderComponent } from './productPart/component/user-order/user-order.component';
+import {JWT_OPTIONS, JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,11 @@ import {authInterceptorProviders} from './userPart/helpers/auth-interceptor';
     ShoppingCartComponent,
     RegisterComponent,
     LoginComponent,
-    UserListComponent
+    UserListComponent,
+    UserOrderComponent
   ],
     imports: [
+        JwtModule,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
@@ -41,7 +45,9 @@ import {authInterceptorProviders} from './userPart/helpers/auth-interceptor';
     ],
   providers: [
     BookService,
-    authInterceptorProviders
+    JwtHelperService,
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

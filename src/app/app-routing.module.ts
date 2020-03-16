@@ -6,6 +6,9 @@ import {ShoppingCartComponent} from './productPart/component/shopping-cart/shopp
 import {RegisterComponent} from './userPart/component/register/register.component';
 import {LoginComponent} from './userPart/component/login/login.component';
 import {UserListComponent} from './userPart/component/user-list/user-list.component';
+import {AuthGuard} from './userPart/helpers/auth.guard';
+import {UserOrderComponent} from './productPart/component/user-order/user-order.component';
+import {AdminGuard} from './userPart/helpers/admin.guard';
 
 
 const routes: Routes = [
@@ -14,7 +17,15 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'book-details/:id', component: BookDetailsComponent},
   { path: 'shop-cart', component: ShoppingCartComponent},
-  { path: 'user-list', component: UserListComponent}
+  { path: 'user-list',
+    component: UserListComponent,
+    canActivate: [AdminGuard],
+    data: {expectedRole: 'Admin'}
+  },
+  { path: 'user-order',
+    component: UserOrderComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({

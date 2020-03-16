@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {Book} from '../../../model/book';
+import {Book} from '../../model/book';
 import {BookService} from '../../service/book.service';
 
 @Component({
@@ -19,5 +19,4 @@ export class CatalogComponent implements OnInit {
     this.books = this.bookService.getBooks();
     this.genres = this.bookService.getGenres();
   }
-
 }

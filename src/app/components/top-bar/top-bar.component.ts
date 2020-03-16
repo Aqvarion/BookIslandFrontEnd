@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {BookService} from '../../productPart/service/book.service';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../userPart/service/token-storage.service';
 
 @Component({

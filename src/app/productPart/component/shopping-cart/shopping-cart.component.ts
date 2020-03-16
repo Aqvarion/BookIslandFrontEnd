@@ -1,7 +1,7 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Book} from '../../../model/book';
+import {Book} from '../../model/book';
 import {BookService} from '../../service/book.service';
-import {CartProduct} from '../../../model/cart-product';
+import {CartProduct} from '../../model/cart-product';
 
 
 @Component({
@@ -13,6 +13,7 @@ export class ShoppingCartComponent implements OnInit {
 
   cartProducts: CartProduct[];
   totalCost: number;
+  private jsUser: string;
 
   constructor(
     private bookService: BookService
@@ -51,6 +52,24 @@ export class ShoppingCartComponent implements OnInit {
   clear() {
     this.bookService.clear();
     this.getCartProduct();
+  }
+
+  console() {
+    console.log(this.cartProducts);
+    console.log(localStorage.getItem('basket'));
+    console.log(JSON.parse(localStorage.getItem('basket')));
+    console.log(1);
+    console.log(sessionStorage.getItem('auth-user'));
+    console.log(JSON.parse(sessionStorage.getItem('auth-user')));
+    this.jsUser = JSON.parse(sessionStorage.getItem('auth-user')).id;
+    console.log(this.jsUser);
+  }
+
+  buyProducts() {
+    this.bookService.buyProducts(this.cartProducts);
+    console.log(this.cartProducts);
+    alert('Congratulations on a successful purchase!');
+    // window.location.reload();
   }
 }
 
