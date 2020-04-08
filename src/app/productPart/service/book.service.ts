@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Book} from '../model/book';
 import {Observable} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {CartProduct} from '../model/cart-product';
+import {map, reduce} from 'rxjs/operators';
+import {workspaceSchemaPath} from '@angular/cli/utilities/config';
 
 const BOOK_API = 'http://localhost:8080/api/book';
+const ORDER_API = 'http://localhost:8080/api/order';
 const httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
 @Injectable({
@@ -100,10 +103,18 @@ export class BookService {
   }
 
   public buyProducts(cart): Observable<any> {
-    alert(cart);
-    return this.http.post(BOOK_API + '/buyItem', {
-      userId: JSON.parse(sessionStorage.getItem('auth-user')).id
+    const map = new Map();
+    for (const item in cart) {
+      console.log(cart[item]);
+      map.set(cart[item].book.id, cart[item].quantity);
+    }
+
+    const obj = [...map].reduce((o, [key, value]) => (o[key] = value, o), {});
+    console.log(obj);
+    return this.http.post(ORDER_API + '/buyItems', {
+      userId: JSON.parse(sessionStorage.getItem('auth-user')).id,
+      purchasedBooks: obj
     }, httpOptions);
-    alert('kk');
   }
+
 }

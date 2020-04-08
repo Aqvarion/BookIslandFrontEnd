@@ -2,6 +2,7 @@ import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Book} from '../../model/book';
 import {BookService} from '../../service/book.service';
 import {CartProduct} from '../../model/cart-product';
+import {map} from 'rxjs/operators';
 
 
 @Component({
@@ -66,10 +67,15 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   buyProducts() {
-    this.bookService.buyProducts(this.cartProducts);
-    console.log(this.cartProducts);
+    this.bookService.buyProducts(this.cartProducts).subscribe(
+      data => {
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    );
     alert('Congratulations on a successful purchase!');
-    // window.location.reload();
+    window.location.reload();
   }
 }
 

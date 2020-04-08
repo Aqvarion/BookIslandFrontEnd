@@ -3,7 +3,7 @@
 <button [routerLink]="['/shop-cart']">ShoppingCart</button>
 
 
-
+<button (click)="consoleLog()">ConsoleLog</button>
 <div *ngIf="!isLoggedIn">
   <button [routerLink]="['/register']">Register</button>
   <button [routerLink]="['/login']">Login</button>
@@ -13,5 +13,5 @@
   <button *ngIf="adminRights" [routerLink]="['/user-list']">Users list</button>
   <button (click)="logout()">Logout</button>
 </div>
-<button [routerLink]="['/user-order']">My orders</button>
+
 

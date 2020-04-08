@@ -14,9 +14,8 @@ import {BookService} from './productPart/service/book.service';
 import {ShoppingCartComponent} from './productPart/component/shopping-cart/shopping-cart.component';
 import {RegisterComponent} from './userPart/component/register/register.component';
 import {LoginComponent} from './userPart/component/login/login.component';
-import { UserListComponent } from './userPart/component/user-list/user-list.component';
+import {UserListComponent} from './userPart/component/user-list/user-list.component';
 import {AuthInterceptor} from './userPart/helpers/auth-interceptor';
-import { UserOrderComponent } from './productPart/component/user-order/user-order.component';
 import {JWT_OPTIONS, JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 
 @NgModule({
@@ -28,8 +27,7 @@ import {JWT_OPTIONS, JwtHelperService, JwtModule} from '@auth0/angular-jwt';
     ShoppingCartComponent,
     RegisterComponent,
     LoginComponent,
-    UserListComponent,
-    UserOrderComponent
+    UserListComponent
   ],
     imports: [
         JwtModule,
