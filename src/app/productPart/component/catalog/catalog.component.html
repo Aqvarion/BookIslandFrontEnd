@@ -1,14 +1,16 @@
-<mat-form-field>
-  <mat-label>Select genre</mat-label>
+<mat-form-field style="width: 100%;">
+  <mat-label>Выбрать жанр</mat-label>
   <mat-select matNativeControl [(value)]="selectGenre">
-    <mat-option>All books</mat-option>
-    <mat-option *ngFor="let book of books | async"  [value]="book.genre">{{book.genre}}</mat-option>
+    <mat-option>Все книги</mat-option>
+    <mat-option *ngFor="let genre of genres "  [value]="genre.name">{{genre.name}}</mat-option>
   </mat-select>
 </mat-form-field>
-<div *ngFor="let book of books | async">
+<div *ngFor="let book of books | async" class="product">
   <div *ngIf="book.genre == selectGenre || selectGenre == null">
-  <div>{{book.title}}</div>
-  <div>{{book.genre}}</div>
-  <button [routerLink]="['/book-details',book.id]">Open</button>
+    <img [src]="book.img" [alt]="book.title" width="100%" class="img-catalog">
+    <div>{{book.title}}</div>
+    <button [routerLink]="['/book-details',book.id]" >Выбрать</button>
+  </div>
 </div>
 <router-outlet></router-outlet>
+

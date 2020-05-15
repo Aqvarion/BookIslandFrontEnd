@@ -10,7 +10,7 @@ import {Book} from '../../model/book';
 })
 export class BookDetailsComponent implements OnInit {
 
-  book: any = {};
+  book: Book;
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService
@@ -19,7 +19,7 @@ export class BookDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params.id;
-      this.bookService.get(id).subscribe((book: any) => {
+      this.bookService.get(id).subscribe((book: Book) => {
         if (!book) {
           window.alert('Don`t found');
         } else {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Book} from '../../model/book';
 import {BookService} from '../../service/book.service';
+import {element} from 'protractor';
 
 @Component({
   selector: 'app-catalog',
@@ -10,13 +11,14 @@ import {BookService} from '../../service/book.service';
 })
 export class CatalogComponent implements OnInit {
 
-  genres: Observable<any[]>;
+  genres: any[];
   books: Observable<Book[]>;
   selectGenre = null;
+
   constructor(private bookService: BookService) { }
 
   ngOnInit() {
     this.books = this.bookService.getBooks();
-    this.genres = this.bookService.getGenres();
+    this.bookService.getGenres().subscribe(res => this.genres = res);
   }
 }

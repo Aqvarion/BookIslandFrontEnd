@@ -1,6 +1,7 @@
 <h2>{{book.title}}</h2>
-<div>Author: {{book.author}}</div>
-<div>Genre: {{book.genre}}</div>
-<div>Price: {{book.price}}</div>
-<button type="button" (click)="addToCart(book)">Buy</button>
-<button [routerLink]="['/catalog']">Catalog</button>
+<img [src]="book.img" [alt]="book.title" width="100%" class="img-detail">
+<div>Автор: {{book.author}}</div>
+<div>Жанр: {{book.genre}}</div>
+<div>Цена: {{book.price}}</div>
+<button type="button" (click)="addToCart(book)">Купить</button>
+<button [routerLink]="['/catalog']">Каталог</button>

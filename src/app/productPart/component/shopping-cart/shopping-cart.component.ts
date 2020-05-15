@@ -55,17 +55,6 @@ export class ShoppingCartComponent implements OnInit {
     this.getCartProduct();
   }
 
-  console() {
-    console.log(this.cartProducts);
-    console.log(localStorage.getItem('basket'));
-    console.log(JSON.parse(localStorage.getItem('basket')));
-    console.log(1);
-    console.log(sessionStorage.getItem('auth-user'));
-    console.log(JSON.parse(sessionStorage.getItem('auth-user')));
-    this.jsUser = JSON.parse(sessionStorage.getItem('auth-user')).id;
-    console.log(this.jsUser);
-  }
-
   buyProducts() {
     this.bookService.buyProducts(this.cartProducts).subscribe(
       data => {
@@ -74,7 +63,7 @@ export class ShoppingCartComponent implements OnInit {
         console.log(error);
       }
     );
-    alert('Congratulations on a successful purchase!');
+    alert('Покупка успешна!');
     window.location.reload();
   }
 }

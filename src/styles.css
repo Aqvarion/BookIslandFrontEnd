@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-}
-
 h1 {
   font-size: 32px;
 }
@@ -24,8 +19,26 @@ app-top-bar {
   align-items: center;
 }
 
-.log-box{
-}
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.img-detail{
+  width: 250px;
+  height: auto;
+}
+
+.img-catalog{
+  width: 100px;
+  height: auto;
+}
+
+.product{
+  display: inline-block;
+  width: 33%;
+  margin-bottom: 20px;
+  padding: 25px 15px;
+}
+
+
+
+

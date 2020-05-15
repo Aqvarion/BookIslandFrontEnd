@@ -1,17 +1,16 @@
 
 <h1 [routerLink]="['/catalog']">Book Island</h1>
-<button [routerLink]="['/shop-cart']">ShoppingCart</button>
+<button [routerLink]="['/shop-cart']">Корзина</button>
 
 
-<button (click)="consoleLog()">ConsoleLog</button>
 <div *ngIf="!isLoggedIn">
-  <button [routerLink]="['/register']">Register</button>
-  <button [routerLink]="['/login']">Login</button>
+  <button [routerLink]="['/register']">Регистрация</button>
+  <button [routerLink]="['/login']">Вход</button>
 </div>
 <div *ngIf="isLoggedIn" style="display: flex;">
-  <p>You are logged in as: {{username}}</p>
-  <button *ngIf="adminRights" [routerLink]="['/user-list']">Users list</button>
-  <button (click)="logout()">Logout</button>
+  <p>Вы вошли как: {{username}}</p>
+  <button *ngIf="adminRights" [routerLink]="['/user-list']">Список пользователей</button>
+  <button (click)="logout()">Выход</button>
 </div>
 
 

@@ -1,10 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Book} from '../model/book';
 import {Observable} from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CartProduct} from '../model/cart-product';
-import {map, reduce} from 'rxjs/operators';
-import {workspaceSchemaPath} from '@angular/cli/utilities/config';
 
 const BOOK_API = 'http://localhost:8080/api/book';
 const ORDER_API = 'http://localhost:8080/api/order';
@@ -25,6 +23,10 @@ export class BookService {
   get(id: number): Observable<Book> {
     return this.http.get<Book>(BOOK_API + '/get' + '/' + id);
   }
+
+  // getGenres(): Observable<any[]> {
+  //   return this.http.get<any[]>(BOOK_API + '/genres');
+  // }
 
   getGenres(): Observable<any[]> {
     return this.http.get<any[]>(BOOK_API + '/genres');
