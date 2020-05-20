@@ -14,6 +14,7 @@ export class CatalogComponent implements OnInit {
   genres: any[];
   books: Observable<Book[]>;
   selectGenre = null;
+  selectBook;
 
   constructor(private bookService: BookService) { }
 

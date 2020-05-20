@@ -5,11 +5,14 @@
     <mat-option *ngFor="let genre of genres "  [value]="genre.name">{{genre.name}}</mat-option>
   </mat-select>
 </mat-form-field>
-<div *ngFor="let book of books | async" class="product">
+<div *ngFor="let book of books | async"  >
   <div *ngIf="book.genre == selectGenre || selectGenre == null">
-    <img [src]="book.img" [alt]="book.title" width="100%" class="img-catalog">
-    <div>{{book.title}}</div>
-    <button [routerLink]="['/book-details',book.id]" >Выбрать</button>
+    <div class="product">
+      <img [src]="book.img" [alt]="book.title" width="100%" class="img-catalog">
+      <div>{{book.title}}</div>
+      <button [routerLink]="['/book-details',book.id]" >Выбрать</button>
+    </div>
+
   </div>
 </div>
 <router-outlet></router-outlet>

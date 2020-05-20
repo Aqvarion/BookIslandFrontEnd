@@ -33,12 +33,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .product{
+  text-align: center;
   display: inline-block;
+  border:6px solid aqua;
   width: 33%;
+  height: auto;
   margin-bottom: 20px;
-  padding: 25px 15px;
+  margin-left: 30px;
 }
 
+app-book-details{
+
+}
 
 
 

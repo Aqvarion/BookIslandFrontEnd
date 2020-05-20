@@ -1,7 +1,10 @@
-<h2>{{book.title}}</h2>
-<img [src]="book.img" [alt]="book.title" width="100%" class="img-detail">
-<div>Автор: {{book.author}}</div>
-<div>Жанр: {{book.genre}}</div>
-<div>Цена: {{book.price}}</div>
-<button type="button" (click)="addToCart(book)">Купить</button>
-<button [routerLink]="['/catalog']">Каталог</button>
+<div style="padding-left: 30px;">
+  <h2>{{book.title}}</h2>
+  <img [src]="book.img" [alt]="book.title" width="100%" class="img-detail">
+  <div>Автор: {{book.author}}</div>
+  <div>Жанр: {{book.genre}}</div>
+  <div>Цена: {{book.price}}</div>
+  <button type="button" (click)="addToCart(book)">Купить</button>
+  <button [routerLink]="['/catalog']">Каталог</button>
+</div>
+
