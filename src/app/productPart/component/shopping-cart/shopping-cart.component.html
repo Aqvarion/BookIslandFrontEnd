@@ -1,23 +1,21 @@
-
-
 <table>
   <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Genre</th>
-    <th>Price</th>
-    <th>Quantity</th>
-    <th>Cost</th>
-    <th>Add</th>
-    <th>Reduce</th>
-    <th>Remove</th>
+    <th>Название</th>
+    <th>Автор</th>
+    <th>Жанр</th>
+    <th>Цена</th>
+    <th>Количество</th>
+    <th>Цена</th>
+    <th>Добавить</th>
+    <th>Уменьшить</th>
+    <th>Удалить</th>
   </tr>
   <tr *ngFor="let cartProduct of cartProducts">
     <td>{{cartProduct.book.title}}</td>
     <td>{{cartProduct.book.author}}</td>
     <td>{{cartProduct.book.genre}}</td>
     <td>{{cartProduct.book.price}}</td>
-    <td>{{cartProduct.quantity}}</td>
+    <td style="text-align: center">{{cartProduct.quantity}}</td>
     <td>{{cartProduct.productCost}}</td>
     <td>
       <button type="button"(click)="addCartProduct(cartProduct.book)">
@@ -37,7 +35,7 @@
   </tr>
   <tr>
     <td colspan="5" align="right">
-      Total cost:
+      Сумма:
     </td>
     <td colspan="4" align="left">
       {{totalCost}}
@@ -46,5 +44,5 @@
 </table>
 <button type="button" (click)="buyProducts()">Купить</button>
 <button type="button" [routerLink]="['/catalog']">Каталог</button>
-<button type="button" (click)="clear()">Delete all</button>
+<button type="button" (click)="clear()">Удалить все</button>
 
